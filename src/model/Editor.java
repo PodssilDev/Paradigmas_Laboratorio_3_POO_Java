@@ -1,4 +1,4 @@
-package com.paradigmas;
+package model;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -92,5 +92,11 @@ public class Editor {
         ArrayList<Usuario> listaUsers = getRegistrados();
         listaUsers.add(usuario);
         setRegistrados(listaUsers);
+    }
+
+    public void agregarDocumento(Documento documento){
+        ArrayList<Documento> listaDocumentos = getDocumentos();
+        listaDocumentos.add(documento);
+        setDocumentos(listaDocumentos);
     }
 }

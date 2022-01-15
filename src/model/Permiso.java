@@ -1,4 +1,4 @@
-package com.paradigmas;
+package model;
 
 public class Permiso {
     private Usuario usuario;

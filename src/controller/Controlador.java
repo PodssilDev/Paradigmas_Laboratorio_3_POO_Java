@@ -1,4 +1,7 @@
-package com.paradigmas;
+package controller;
+
+import model.*;
+import java.util.ArrayList;
 
 public class Controlador {
     private Editor editor;
@@ -58,9 +61,28 @@ public class Controlador {
 
     }
 
-    // CREATE
+    public void create(String nombreDoc, String contenido){
+        Editor editor = getEditor();
+        Documento newDocumento = new Documento(editor.getActivo().getUsername(),nombreDoc, contenido);
+        editor.agregarDocumento(newDocumento);
+        System.out.println("Se ha creado correctamente un documento.");
 
-    // constructor
+    }
 
-
+    public void share(ArrayList<String> usernamesList, Integer iDDocumento, String permisoADar){
+        Editor editor = getEditor();
+        Integer contador = 0;
+        for (int i = 0; i < usernamesList.size(); i++) {
+            for (int j = 0; j < editor.getRegistrados().size(); j++) {
+                if (editor.getRegistrados().get(j).getUsername().equals(usernamesList.get(i))) {
+                    contador++;
+                }
+            }
+        }
+        if (contador!=usernamesList.size()) {
+            System.out.println("Se esta intentando compartir documentos con un usuario que no esta registrado. Intentelo nuevamente.");
+            return;
+        }
+        // Verificar documento, crear los permisos y agregarlos
+    }
 }

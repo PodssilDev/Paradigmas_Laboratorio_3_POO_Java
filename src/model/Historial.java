@@ -1,4 +1,4 @@
-package com.paradigmas;
+package model;
 
 public class Historial {
     private String fecha;
