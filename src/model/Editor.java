@@ -21,11 +21,11 @@ public class Editor {
         this.conectado = false;
         this.documentos = new ArrayList<>();
 
-        Usuario user1 = new Usuario("MrDoo","lol123");
-        Usuario user2 = new Usuario("dulca","test");
+        //Usuario user1 = new Usuario("MrDoo","lol123");
+        //Usuario user2 = new Usuario("dulca","test");
 
-        registrados.add(user1);
-        registrados.add(user2);
+        //registrados.add(user1);
+        //registrados.add(user2);
     }
 
     public String getName() {
@@ -96,6 +96,18 @@ public class Editor {
 
     public void agregarDocumento(Documento documento){
         ArrayList<Documento> listaDocumentos = getDocumentos();
+        listaDocumentos.add(documento);
+        setDocumentos(listaDocumentos);
+
+    }
+
+    public void agregarDocumentoLimpio(Documento documento) {
+        ArrayList<Documento> listaDocumentos = getDocumentos();
+        for (int i = 0; i < listaDocumentos.size(); i++) {
+            if (listaDocumentos.get(i).getId().equals(documento.getId())) {
+                listaDocumentos.remove(i);
+            }
+        }
         listaDocumentos.add(documento);
         setDocumentos(listaDocumentos);
     }

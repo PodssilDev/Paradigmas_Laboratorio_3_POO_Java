@@ -1,19 +1,19 @@
 package model;
 
 public class Permiso {
-    private Usuario usuario;
+    private String usuario;
     private String permiso;
 
-    public Permiso(Usuario usuario, String permiso) {
+    public Permiso(String usuario, String permiso) {
         this.usuario = usuario;
         this.permiso = permiso;
     }
 
-    public Usuario getUsuario() {
+    public String getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 

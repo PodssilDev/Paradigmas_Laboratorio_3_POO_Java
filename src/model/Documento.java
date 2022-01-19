@@ -23,7 +23,7 @@ public class Documento {
         this.fechaModificacion = tipo.format(tempDate);
         this.name = name;
         this.texto = texto;
-        this.permisos =  new ArrayList<>();
+        this.permisos = new ArrayList<>();
         Historial newHistorial = new Historial(texto, fechaCreacion);
         this.historialVersiones = new ArrayList<>();
         historialVersiones.add(newHistorial);
@@ -109,5 +109,12 @@ public class Documento {
                 ", historialVersiones=" + historialVersiones +
                 ", id=" + id +
                 '}';
+    }
+
+    public void agregarPermiso(Documento documento, Permiso permiso) {
+        ArrayList<Permiso> listapermisos = getPermisos();
+        listapermisos.add(permiso);
+        setPermisos(listapermisos);
+        return;
     }
 }
