@@ -73,6 +73,7 @@ public class Controlador {
     public void share(ArrayList<String> usernamesList, Integer iDDocumento, String permisoADar) {
         Editor editor = getEditor();
         Permiso permiso;
+        boolean filtrado = false;
         ArrayList<String> usernamesListFiltrada = new ArrayList<String>();
         for (int i = 0; i < usernamesList.size(); i++) {
             for (int j = 0; j < editor.getRegistrados().size(); j++) {
@@ -88,6 +89,16 @@ public class Controlador {
         for (int i = 0; i < editor.getDocumentos().size(); i++) {
             if (editor.getDocumentos().get(i).getId() == iDDocumento) {
                 for (int j = 0; j < usernamesListFiltrada.size(); j++) {
+                    if(filtrado == false){
+                        for (int k = 0; k < usernamesList.size(); k++) {
+                            for (int m = 0; j < editor.getDocumentos().get(i).getPermisos().size(); m++) {
+                                if (editor.getDocumentos().get(i).getPermisos().get(m).getUsuario().equals(usernamesList.get(k))) {
+                                    editor.getDocumentos().get(i).getPermisos().remove(m);
+                                }
+                            }
+                        }
+                        filtrado = true;
+                    }
                     permiso = new Permiso(usernamesListFiltrada.get(j), permisoADar);
                     editor.getDocumentos().get(i).agregarPermiso(editor.getDocumentos().get(i), permiso);
                     editor.agregarDocumentoLimpio(editor.getDocumentos().get(i));

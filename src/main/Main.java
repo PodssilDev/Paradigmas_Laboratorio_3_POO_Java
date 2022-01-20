@@ -20,6 +20,7 @@ public class Main {
         listusernames.add("Dulca");
         listusernames.add("Nicos");
         controlador.share(listusernames,1, "Escritura");
+        controlador.share(listusernames,1, "Lectura");
         System.out.println(editor.toString());
 
 
