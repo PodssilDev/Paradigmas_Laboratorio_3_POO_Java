@@ -7,7 +7,6 @@ import java.util.Date;
 public class Documento {
     private String autor;
     private String fechaCreacion;
-    private String fechaModificacion;
     private String name;
     private String texto;
     private ArrayList<Permiso> permisos;
@@ -20,11 +19,10 @@ public class Documento {
         SimpleDateFormat tipo = new SimpleDateFormat("dd/MM/yyyy");
         Date tempDate = new Date();
         this.fechaCreacion = tipo.format(tempDate);
-        this.fechaModificacion = tipo.format(tempDate);
         this.name = name;
         this.texto = texto;
         this.permisos = new ArrayList<>();
-        Historial newHistorial = new Historial(texto, fechaCreacion);
+        Historial newHistorial = new Historial(texto, 0);
         this.historialVersiones = new ArrayList<>();
         historialVersiones.add(newHistorial);
         idGlobal = idGlobal + 1;
@@ -47,14 +45,6 @@ public class Documento {
 
     public void setFechaCreacion(String fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
-    }
-
-    public String getFechaModificacion() {
-        return fechaModificacion;
-    }
-
-    public void setFechaModificacion(String fechaModificacion) {
-        this.fechaModificacion = fechaModificacion;
     }
 
     public String getName() {
@@ -102,7 +92,6 @@ public class Documento {
         return "Documento{" +
                 "autor='" + autor + '\'' +
                 ", fechaCreacion='" + fechaCreacion + '\'' +
-                ", fechaModificacion='" + fechaModificacion + '\'' +
                 ", name='" + name + '\'' +
                 ", texto='" + texto + '\'' +
                 ", permisos=" + permisos +

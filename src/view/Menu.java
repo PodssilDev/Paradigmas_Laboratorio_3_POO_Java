@@ -29,7 +29,6 @@ public class Menu {
         int eleccionShare;
         String username;
         String password;
-        ArrayList<String> userList = new ArrayList<String>();
         Controlador controlador = getControlador();
         while (!salirMenu) {
             if (controlador.estaConectado() == false) {
@@ -102,6 +101,7 @@ public class Menu {
 
                         case 2:
                             boolean salirShare = false;
+                            ArrayList<String> userList = new ArrayList<String>();
                             System.out.println("Permiso de escribir: Escritura");
                             System.out.println("Permiso de lectura: Lectura");
                             System.out.println("Permiso de comentar: Comentario");
@@ -137,6 +137,15 @@ public class Menu {
                                 }
                             }
                             controlador.share(userList, documentID, permiso);
+                            break;
+
+                        case 3:
+                            System.out.println("Ingrese el ID del documento que desea editar: ");
+                            documentID = input.nextInt();
+                            System.out.println("Ingrese el texto que desea agregar al final del documento: ");
+                            input.nextLine();
+                            String newText = input.nextLine();
+                            controlador.add(documentID, newText);
                             break;
 
                         case 8: // logout

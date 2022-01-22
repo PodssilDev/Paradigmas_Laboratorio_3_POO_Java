@@ -2,6 +2,7 @@ package controller;
 
 import model.*;
 
+import javax.sound.midi.Soundbank;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -76,10 +77,10 @@ public class Controlador {
         Permiso permiso;
         boolean filtrado = false;
         ArrayList<String> usernamesListFiltrada = new ArrayList<String>();
-        if ((permisoADar == "Escritura") || (permisoADar == "Lectura") || (permisoADar == "Comentar")){
+        if ((permisoADar.equals("Escritura")) || (permisoADar.equals("Lectura")) || (permisoADar.equals("Comentario"))) {
             valido = true;
         }
-        if(valido == false){
+        if (valido == false) {
             System.out.println("El permiso que se quiere dar no es valido, intentelo nuevamente.");
             return;
         }
@@ -90,16 +91,20 @@ public class Controlador {
                 }
             }
         }
-        if(usernamesListFiltrada.size() == 0){
+        if (usernamesListFiltrada.size() == 0) {
             System.out.println("No hay usuarios validos para dar permisos.");
             return;
         }
         for (int i = 0; i < editor.getDocumentos().size(); i++) {
             if (editor.getDocumentos().get(i).getId() == iDDocumento) {
+                if (!editor.getActivo().getUsername().equals(editor.getDocumentos().get(i).getAutor())){
+                    System.out.println("El usuario no puede dar permisos en este documento");
+                    return;
+                }
                 for (int j = 0; j < usernamesListFiltrada.size(); j++) {
-                    if(filtrado == false){
+                    if (filtrado == false) {
                         for (int k = 0; k < usernamesList.size(); k++) {
-                            for (int m = 0; j < editor.getDocumentos().get(i).getPermisos().size(); m++) {
+                            for (int m = 0; m < editor.getDocumentos().get(i).getPermisos().size(); m++) {
                                 if (editor.getDocumentos().get(i).getPermisos().get(m).getUsuario().equals(usernamesList.get(k))) {
                                     editor.getDocumentos().get(i).getPermisos().remove(m);
                                 }
@@ -111,10 +116,47 @@ public class Controlador {
                     editor.getDocumentos().get(i).agregarPermiso(editor.getDocumentos().get(i), permiso);
                     editor.agregarDocumentoLimpio(editor.getDocumentos().get(i));
                 }
+                System.out.println("Se compartio el documento con exito!");
+                System.out.println("Los usuarios elegidos ahora tienen permiso de " + permisoADar);
                 return;
             }
         }
-        System.out.println("El documento no es valido");
+        System.out.println("El ID de documento no es valido");
+        return;
+    }
+
+    public void add(Integer iDDocumento, String textoAgregar) {
+        Editor editor = getEditor();
+        for (int i = 0; i < editor.getDocumentos().size(); i++) {
+            if (editor.getDocumentos().get(i).getId() == iDDocumento) {
+                if (editor.getActivo().getUsername().equals(editor.getDocumentos().get(i).getAutor())) {
+                    String newtexto = editor.getDocumentos().get(i).getTexto().concat(textoAgregar);
+                    Historial newver = new Historial(newtexto, editor.getDocumentos().get(i).getHistorialVersiones().size());
+                    editor.getDocumentos().get(i).getHistorialVersiones().add(newver);
+                    editor.getDocumentos().get(i).setTexto(newtexto);
+                    System.out.println("Se ha agregado con exito el texto al final del documento!");
+                    return;
+                }
+                for (int j = 0; j < editor.getDocumentos().get(i).getPermisos().size(); j++) {
+                    if (editor.getActivo().getUsername().equals(editor.getDocumentos().get(i).getPermisos().get(j).getUsuario())){
+                        System.out.println("Test1");
+                        if (editor.getDocumentos().get(i).getPermisos().get(j).getPermiso().equals("Escritura")) {
+                            String newtexto = editor.getDocumentos().get(i).getTexto().concat(textoAgregar);
+                            Historial newver = new Historial(newtexto, editor.getDocumentos().get(i).getHistorialVersiones().size());
+                            editor.getDocumentos().get(i).getHistorialVersiones().add(newver);
+                            editor.getDocumentos().get(i).setTexto(newtexto);
+                            System.out.println("Se ha agregado con exito el texto al final del documento!");
+                            return;
+                        }
+                    }
+                }
+                System.out.println("El usuario no es el autor del texto ni tampoco tiene permisos de escritura!");
+                System.out.println("No se puede agregar el texto.");
+                System.out.println(editor.toString());
+                return;
+            }
+        }
+        System.out.println("El ID de documento no es valido");
         return;
     }
 }

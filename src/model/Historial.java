@@ -1,16 +1,19 @@
 package model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Historial {
     private String fecha;
     private String texto;
-    private static Integer idGlobal = 0;
     private Integer id;
 
-    public Historial(String texto, String fecha) {
-        this.fecha = fecha;
+    public Historial(String texto, Integer id) {
+        SimpleDateFormat tipo = new SimpleDateFormat("dd/MM/yyyy");
+        Date tempDate = new Date();
+        this.fecha = tipo.format(tempDate);
         this.texto = texto;
-        idGlobal = idGlobal + 1;
-        this.id = idGlobal;
+        this.id = id;
     }
 
     public String getFecha() {
@@ -46,3 +49,4 @@ public class Historial {
                 '}';
     }
 }
+

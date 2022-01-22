@@ -19,9 +19,10 @@ public class Main {
         controlador.create("doc1", "cont1");
         ArrayList<String> listusernames = new ArrayList<>();
         listusernames.add("Dulca");
-        listusernames.add("Nicos");
         controlador.share(listusernames,1, "Escritura");
-        controlador.share(listusernames,1, "Lectura");
+        ArrayList<String> listusernames2 = new ArrayList<>();
+        listusernames2.add("Nico");
+        controlador.share(listusernames2,1, "Lectura");
         System.out.println(editor.toString());
          */
         //ArrayList<String> usernamesListFiltrada = new ArrayList<String>();
@@ -34,6 +35,7 @@ public class Main {
         Menu menu = new Menu(controlador);
 
         menu.ejecutarMenu();
+
 
     }
 
