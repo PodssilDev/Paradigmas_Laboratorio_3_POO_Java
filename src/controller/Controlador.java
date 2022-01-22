@@ -121,7 +121,7 @@ public class Controlador {
                 return;
             }
         }
-        System.out.println("El ID de documento no es valido");
+        System.out.println("El ID de documento " + iDDocumento +  " no es valido");
         return;
     }
 
@@ -156,7 +156,88 @@ public class Controlador {
                 return;
             }
         }
-        System.out.println("El ID de documento no es valido");
+        System.out.println("El ID de documento " + iDDocumento + " no es valido.");
+        return;
+    }
+
+    public void rollback(Integer iDDocumento, Integer iDVersion) {
+        for (int i = 0; i < editor.getDocumentos().size(); i++) {
+            if (editor.getDocumentos().get(i).getId() == iDDocumento) {
+                if (!editor.getActivo().getUsername().equals(editor.getDocumentos().get(i).getAutor())) {
+                    System.out.println("El usuario no puede restaurar versiones en este documento.");
+                    return;
+                }
+                for(int j = 0; j < editor.getDocumentos().get(i).getHistorialVersiones().size(); j++){
+                    if(editor.getDocumentos().get(i).getHistorialVersiones().get(j).getId().equals(iDVersion)){
+                        editor.getDocumentos().get(i).setTexto(editor.getDocumentos().get(i).getHistorialVersiones().get(j).getTexto());
+                        System.out.println("La version " + iDVersion + " ha sido restaurada con exito!");
+                        return;
+                    }
+                }
+                System.out.println("La version " + iDVersion + " no puede ser restaurada ya que no existe.");
+                return;
+            }
+        }
+        System.out.println("El ID de documento " + iDDocumento + " no es valido.");
+        return;
+    }
+
+    public void revokeAccess(Integer iDDocumento) {
+        for (int i = 0; i < editor.getDocumentos().size(); i++) {
+            if (editor.getDocumentos().get(i).getId() == iDDocumento) {
+                if (!editor.getActivo().getUsername().equals(editor.getDocumentos().get(i).getAutor())) {
+                    System.out.println("El usuario no puede revocar accesos en este documento.");
+                    return;
+                }
+                ArrayList<Permiso> newListPermiso = new ArrayList<Permiso>();
+                editor.getDocumentos().get(i).setPermisos(newListPermiso);
+                System.out.println("Se han revocado todos los accesos del documento con exito!");
+                return;
+            }
+        }
+        System.out.println("El ID de documento " + iDDocumento + " no es valido.");
+        return;
+    }
+
+    public void search(String searchText){
+        ArrayList<Documento> documentsList = new ArrayList<Documento>();
+        ArrayList<Documento> documentsListFound = new ArrayList<Documento>();
+        for (int i = 0; i < editor.getDocumentos().size(); i++){
+            if(editor.getDocumentos().get(i).getAutor().equals(editor.getActivo().getUsername())){
+                documentsList.add(editor.getDocumentos().get(i));
+            }else{
+                for(int j = 0; j < editor.getDocumentos().get(i).getPermisos().size(); j++){
+                    if(editor.getDocumentos().get(i).getPermisos().get(j).getUsuario().equals(editor.getActivo().getUsername())){
+                        documentsList.add(editor.getDocumentos().get(i));
+                    }
+                }
+            }
+        }
+        if(documentsList.size() == 0){
+            System.out.println("El usuario no tiene documentos en los que pueda realizar busquedas");
+            return;
+        }
+        for(int i = 0; i < documentsList.size(); i++){
+            for(int j = 0; j < documentsList.get(i).getHistorialVersiones().size();j++){
+                if(documentsList.get(i).getHistorialVersiones().get(j).getTexto().contains(searchText)){
+                    documentsListFound.add(documentsList.get(i));
+                    break;
+                }
+            }
+        }
+        if(documentsListFound.size() == 0){
+            System.out.println("No se encontraron documentos que contengan el texto buscado");
+            return;
+
+        }else{
+            System.out.println("Se encontraron Documentos! Los nombres, autores e IDs de estos son: ");
+            for(int i = 0; i < documentsListFound.size(); i++){
+                System.out.println("Nombre: " + documentsListFound.get(i).getName());
+                System.out.println("ID: " + documentsListFound.get(i).getId());
+                System.out.println("Autor: " + documentsListFound.get(i).getAutor());
+                System.out.println("----------------------------");
+            }
+        }
         return;
     }
 }

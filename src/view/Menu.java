@@ -90,6 +90,7 @@ public class Menu {
                     System.out.println("Ingrese una de las opciones anteriores: ");
                     eleccion = input.nextInt();
                     switch (eleccion) {
+
                         case 1: // CREATE
                             System.out.println("Ingrese el nombre del documento: ");
                             input.nextLine();
@@ -99,7 +100,7 @@ public class Menu {
                             controlador.create(nameDoc, contentDoc);
                             break;
 
-                        case 2:
+                        case 2: // SHARE
                             boolean salirShare = false;
                             ArrayList<String> userList = new ArrayList<String>();
                             System.out.println("Permiso de escribir: Escritura");
@@ -139,7 +140,7 @@ public class Menu {
                             controlador.share(userList, documentID, permiso);
                             break;
 
-                        case 3:
+                        case 3: // ADD
                             System.out.println("Ingrese el ID del documento que desea editar: ");
                             documentID = input.nextInt();
                             System.out.println("Ingrese el texto que desea agregar al final del documento: ");
@@ -148,7 +149,29 @@ public class Menu {
                             controlador.add(documentID, newText);
                             break;
 
-                        case 8: // logout
+                        case 4: // ROLLBACK
+                            System.out.println("Ingrese el ID del documento del cual desea restaurar una version: ");
+                            documentID = input.nextInt();
+                            System.out.println("Ingrese el ID de la version que desea restaurar del documento: ");
+                            Integer versionID;
+                            versionID = input.nextInt();
+                            controlador.rollback(documentID, versionID);
+                            break;
+
+                        case 5: // REVOKEACCESS
+                            System.out.println("Ingrese el ID del documento del cual desea revocar accesos: ");
+                            documentID = input.nextInt();
+                            controlador.revokeAccess(documentID);
+                            break;
+
+                        case 6: // SEARCH
+                            System.out.println("Ingrese el texto que desea buscar en los documentos donde tenga acceso");
+                            input.nextLine();
+                            String searchText = input.nextLine();
+                            controlador.search(searchText);
+                            break;
+
+                        case 8: // LOGOUT
                             controlador.logout();
                             break;
 
