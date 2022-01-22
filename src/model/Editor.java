@@ -21,11 +21,11 @@ public class Editor {
         this.conectado = false;
         this.documentos = new ArrayList<>();
 
-        //Usuario user1 = new Usuario("MrDoo","lol123");
-        //Usuario user2 = new Usuario("dulca","test");
+        Usuario user1 = new Usuario("MrDoo","lol123");
+        Usuario user2 = new Usuario("dulca","test");
 
-        //registrados.add(user1);
-        //registrados.add(user2);
+        registrados.add(user1);
+        registrados.add(user2);
     }
 
     public String getName() {

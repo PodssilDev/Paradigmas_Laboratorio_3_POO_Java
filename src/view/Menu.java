@@ -1,5 +1,6 @@
 package view;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -25,8 +26,10 @@ public class Menu {
         Scanner input = new Scanner(System.in);
         boolean salirMenu = false;
         int eleccion;
+        int eleccionShare;
         String username;
         String password;
+        ArrayList<String> userList = new ArrayList<String>();
         Controlador controlador = getControlador();
         while (!salirMenu) {
             if (controlador.estaConectado() == false) {
@@ -95,6 +98,45 @@ public class Menu {
                             System.out.println("Ingrese el contenido del documento: ");
                             String contentDoc = input.nextLine();
                             controlador.create(nameDoc, contentDoc);
+                            break;
+
+                        case 2:
+                            boolean salirShare = false;
+                            System.out.println("Permiso de escribir: Escritura");
+                            System.out.println("Permiso de lectura: Lectura");
+                            System.out.println("Permiso de comentar: Comentario");
+                            System.out.println("Considerando lo anterior, ingrese el permiso que desea dar, respetando la mayuscula de la primera letra");
+                            input.nextLine();
+                            String permiso = input.nextLine();
+                            System.out.println("Ingrese el ID del documento que desea compartir: ");
+                            Integer documentID = input.nextInt();
+                            System.out.println("Ingrese el username del usuario al que desea compartir el documento");
+                            input.nextLine();
+                            String user = input.nextLine();
+                            userList.add(user);
+                            while (!salirShare) {
+                                System.out.println("¿Desea dar permisos a otro usuario?");
+                                System.out.println("1. Dar permisos a otro usuario");
+                                System.out.println("2. Finalizar proceso de compartir");
+                                try{
+                                    System.out.println("Introduzca su eleccion: ");
+                                    eleccionShare = input.nextInt();
+                                    switch (eleccionShare) {
+                                        case 1:
+                                            System.out.println("Ingrese el username del usuario al que desea compartir el documento");
+                                            input.nextLine();
+                                            user = input.nextLine();
+                                            userList.add(user);
+                                            break;
+                                        case 2:
+                                            salirShare = true;
+                                    }
+                                } catch (InputMismatchException e) {
+                                    System.out.println("El menu solo admite como entrada numeros y alguna de las opciones anteriores");
+                                    input.next();
+                                }
+                            }
+                            controlador.share(userList, documentID, permiso);
                             break;
 
                         case 8: // logout

@@ -72,9 +72,17 @@ public class Controlador {
 
     public void share(ArrayList<String> usernamesList, Integer iDDocumento, String permisoADar) {
         Editor editor = getEditor();
+        boolean valido = false;
         Permiso permiso;
         boolean filtrado = false;
         ArrayList<String> usernamesListFiltrada = new ArrayList<String>();
+        if ((permisoADar == "Escritura") || (permisoADar == "Lectura") || (permisoADar == "Comentar")){
+            valido = true;
+        }
+        if(valido == false){
+            System.out.println("El permiso que se quiere dar no es valido, intentelo nuevamente.");
+            return;
+        }
         for (int i = 0; i < usernamesList.size(); i++) {
             for (int j = 0; j < editor.getRegistrados().size(); j++) {
                 if (editor.getRegistrados().get(j).getUsername().equals(usernamesList.get(i))) {
