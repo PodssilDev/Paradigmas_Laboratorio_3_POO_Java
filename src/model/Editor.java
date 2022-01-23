@@ -21,8 +21,8 @@ public class Editor {
         this.conectado = false;
         this.documentos = new ArrayList<>();
 
-        Usuario user1 = new Usuario("MrDoo","lol123");
-        Usuario user2 = new Usuario("dulca","test");
+        Usuario user1 = new Usuario("MrDoo", "lol123");
+        Usuario user2 = new Usuario("dulca", "test");
 
         registrados.add(user1);
         registrados.add(user2);
@@ -78,14 +78,68 @@ public class Editor {
 
     @Override
     public String toString() {
-        return "Editor{" +
-                "name='" + name + '\'' +
-                ", date='" + date + '\'' +
-                ", registrados=" + registrados +
-                ", activo=" + activo +
-                ", conectado=" + conectado +
-                ", documentos=" + documentos +
-                '}';
+        String retorno = new String();
+        ArrayList<Documento> documentsList = new ArrayList<Documento>();
+        retorno = "Nombre del editor: " + getName() + "\n";
+        retorno = retorno + "Fecha de creacion de la plataforma: " + getDate() + "\n";
+        retorno = retorno + "------------------" + "\n";
+        if (isConectado() == true) {
+            retorno = retorno + "Usuario online actualmente: " + getActivo().getUsername() + "\n";
+            retorno = retorno + "Cuenta creada con la fecha de: " + getActivo().getFecha() + "\n";
+            retorno = retorno + "------------------" + "\n";
+            for (int i = 0; i < getDocumentos().size(); i++) {
+                if (getDocumentos().get(i).getAutor().equals(getActivo().getUsername())) {
+                    documentsList.add(getDocumentos().get(i));
+                } else {
+                    for (int j = 0; j < getDocumentos().get(i).getPermisos().size(); j++) {
+                        if (getDocumentos().get(i).getPermisos().get(j).getUsuario().equals(getActivo().getUsername())) {
+                            documentsList.add(getDocumentos().get(i));
+                        }
+                    }
+                }
+            }
+            if (documentsList.size() == 0) {
+                retorno = retorno + "El usuario no tiene documentos propios ni compartidos.";
+                return retorno;
+            }
+            retorno = retorno + "El usuario cuenta con " + documentsList.size() + " documentos propios o compartidos" + "\n";
+            for (int i = 0; i < documentsList.size(); i++) {
+                retorno = retorno + "------------------" + "\n";
+                retorno = retorno + "ID: " + documentsList.get(i).getId() + "\n";
+                retorno = retorno + "Propietario: " + documentsList.get(i).getAutor() + "\n";
+                retorno = retorno + "Nombre: " + documentsList.get(i).getName() + "\n";
+                retorno = retorno + "Contenido: " + documentsList.get(i).getTexto() + "\n";
+                if (documentsList.get(i).getPermisos().size() == 0) {
+                    retorno = retorno + "El documento no ha sido compartido con otros usuarios" + "\n";
+                } else {
+                    retorno = retorno + "El documento ha sido compartido con " + documentsList.get(i).getPermisos().size() + " usuarios" + "\n";
+                    for (int j = 0; j < documentsList.get(i).getPermisos().size(); j++) {
+                        retorno = retorno + "------------------" + "\n";
+                        retorno = retorno + "Usuario al que se le dio permiso: " + documentsList.get(i).getPermisos().get(j).getUsuario() + "\n";
+                        retorno = retorno + "Permiso concedido: " + documentsList.get(i).getPermisos().get(j).getPermiso() + "\n";
+                    }
+                }
+                retorno = retorno + "El documento tiene " + documentsList.get(i).getHistorialVersiones().size() + " versiones" + "\n";
+            }
+            return retorno;
+
+        } else {
+            if (getDocumentos().size() == 0) {
+                retorno = retorno + "Aun no se han creado documentos en el editor." + "\n";
+                return retorno;
+            } else {
+                retorno = retorno + "Los documentos creados en la plataforma son:" + "\n";
+                for (int i = 0; i < getDocumentos().size(); i++) {
+                    retorno = retorno + "------------------" + "\n";
+                    retorno = retorno + "ID: " + getDocumentos().get(i).getId() + "\n";
+                    retorno = retorno + "Propietario: " + getDocumentos().get(i).getAutor() + "\n";
+                    retorno = retorno + "Nombre: " + getDocumentos().get(i).getName() + "\n";
+                    retorno = retorno + "Contenido: " + getDocumentos().get(i).getTexto() + "\n";
+                    retorno = retorno + "El documento tiene " + getDocumentos().get(i).getHistorialVersiones().size() + " versiones" + "\n";
+                }
+                return retorno;
+            }
+        }
     }
 
     public void agregarUsuario(Usuario usuario){

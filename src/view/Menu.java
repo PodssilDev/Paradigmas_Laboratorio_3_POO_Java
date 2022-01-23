@@ -36,7 +36,8 @@ public class Menu {
                 System.out.println("Escoja la opcion que desea realizar: ");
                 System.out.println("1. Loguearse");
                 System.out.println("2. Registrarse");
-                System.out.println("3. Salir");
+                System.out.println("3. Ver documentos creados en el Editor");
+                System.out.println("4. Salir");
                 try {
                     System.out.println("Introduzca su eleccion: ");
                     eleccion = input.nextInt();
@@ -60,6 +61,11 @@ public class Menu {
                             controlador.register(username, password);
                             break;
                         case 3:
+                            System.out.println("Su opcion fue la numero 3: Ver documentos creados en el Editor");
+                            controlador.visualize();
+                            break;
+
+                        case 4:
                             System.out.println("Gracias por utilizar " + controlador.getEditor().getName());
                             salirMenu = true;
                             input.close();
@@ -84,14 +90,16 @@ public class Menu {
                 System.out.println("5. Revocar acceso a un documento");
                 System.out.println("6. Buscar en los documentos");
                 System.out.println("7. Visualizar documentos");
-                System.out.println("8. Cerrar sesion");
-                System.out.println("9. Cerrar el editor");
+                System.out.println("8. Eliminar caracteres de un documento");
+                System.out.println("9. Cerrar sesion");
+                System.out.println("10. Cerrar el editor");
                 try {
                     System.out.println("Ingrese una de las opciones anteriores: ");
                     eleccion = input.nextInt();
                     switch (eleccion) {
 
                         case 1: // CREATE
+                            System.out.println("Su opcion fue la numero 1: Crear nuevo documento");
                             System.out.println("Ingrese el nombre del documento: ");
                             input.nextLine();
                             String nameDoc = input.nextLine();
@@ -101,6 +109,7 @@ public class Menu {
                             break;
 
                         case 2: // SHARE
+                            System.out.println("Su opcion fue la numero 2: Compartir documento");
                             boolean salirShare = false;
                             ArrayList<String> userList = new ArrayList<String>();
                             System.out.println("Permiso de escribir: Escritura");
@@ -171,11 +180,23 @@ public class Menu {
                             controlador.search(searchText);
                             break;
 
-                        case 8: // LOGOUT
+                        case 7: //VISUALIZE
+                            controlador.visualize();
+                            break;
+
+                        case 8: // DELETE
+                            System.out.println("Ingrese el ID del documento que desea editar: ");
+                            documentID = input.nextInt();
+                            System.out.println("Ingrese el numero de caracteres que desea eliminar ");
+                            Integer textSize = input.nextInt();
+                            controlador.delete(documentID, textSize);
+                            break;
+
+                        case 9: // LOGOUT
                             controlador.logout();
                             break;
 
-                        case 9:
+                        case 10:
                             System.out.println("Gracias por utilizar " + controlador.getEditor().getName());
                             salirMenu = true;
                             input.close();

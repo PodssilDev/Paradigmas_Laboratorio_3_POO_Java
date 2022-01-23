@@ -139,7 +139,6 @@ public class Controlador {
                 }
                 for (int j = 0; j < editor.getDocumentos().get(i).getPermisos().size(); j++) {
                     if (editor.getActivo().getUsername().equals(editor.getDocumentos().get(i).getPermisos().get(j).getUsuario())){
-                        System.out.println("Test1");
                         if (editor.getDocumentos().get(i).getPermisos().get(j).getPermiso().equals("Escritura")) {
                             String newtexto = editor.getDocumentos().get(i).getTexto().concat(textoAgregar);
                             Historial newver = new Historial(newtexto, editor.getDocumentos().get(i).getHistorialVersiones().size());
@@ -152,7 +151,6 @@ public class Controlador {
                 }
                 System.out.println("El usuario no es el autor del texto ni tampoco tiene permisos de escritura!");
                 System.out.println("No se puede agregar el texto.");
-                System.out.println(editor.toString());
                 return;
             }
         }
@@ -161,6 +159,7 @@ public class Controlador {
     }
 
     public void rollback(Integer iDDocumento, Integer iDVersion) {
+        Editor editor = getEditor();
         for (int i = 0; i < editor.getDocumentos().size(); i++) {
             if (editor.getDocumentos().get(i).getId() == iDDocumento) {
                 if (!editor.getActivo().getUsername().equals(editor.getDocumentos().get(i).getAutor())) {
@@ -183,6 +182,7 @@ public class Controlador {
     }
 
     public void revokeAccess(Integer iDDocumento) {
+        Editor editor = getEditor();
         for (int i = 0; i < editor.getDocumentos().size(); i++) {
             if (editor.getDocumentos().get(i).getId() == iDDocumento) {
                 if (!editor.getActivo().getUsername().equals(editor.getDocumentos().get(i).getAutor())) {
@@ -200,6 +200,7 @@ public class Controlador {
     }
 
     public void search(String searchText){
+        Editor editor = getEditor();
         ArrayList<Documento> documentsList = new ArrayList<Documento>();
         ArrayList<Documento> documentsListFound = new ArrayList<Documento>();
         for (int i = 0; i < editor.getDocumentos().size(); i++){
@@ -240,4 +241,60 @@ public class Controlador {
         }
         return;
     }
+
+    public void visualize() {
+        Editor editor = getEditor();
+        System.out.println(editor.toString());
+        return;
+    }
+
+    public void delete(Integer iDDocumento, Integer textSize){
+        Editor editor = getEditor();
+        String newText = "";
+        for (int i = 0; i < editor.getDocumentos().size(); i++) {
+            if (editor.getDocumentos().get(i).getId() == iDDocumento) {
+                if (editor.getActivo().getUsername().equals(editor.getDocumentos().get(i).getAutor())) {
+                    if(editor.getDocumentos().get(i).getTexto().length() <= textSize){
+                        Historial newver = new Historial(newText, editor.getDocumentos().get(i).getHistorialVersiones().size());
+                        editor.getDocumentos().get(i).getHistorialVersiones().add(newver);
+                        editor.getDocumentos().get(i).setTexto(newText);
+                        System.out.println("Se ha eliminado con exito el texto!");
+                        return;
+                    }else{
+                        newText = editor.getDocumentos().get(i).getTexto().substring(0, editor.getDocumentos().get(i).getTexto().length() - textSize);
+                        Historial newver = new Historial(newText, editor.getDocumentos().get(i).getHistorialVersiones().size());
+                        editor.getDocumentos().get(i).getHistorialVersiones().add(newver);
+                        editor.getDocumentos().get(i).setTexto(newText);
+                        System.out.println("Se ha eliminado con exito el texto!");
+                        return;
+                    }
+                }
+                for (int j = 0; j < editor.getDocumentos().get(i).getPermisos().size(); j++) {
+                    if (editor.getActivo().getUsername().equals(editor.getDocumentos().get(i).getPermisos().get(j).getUsuario())){
+                        if(editor.getDocumentos().get(i).getTexto().length() <= textSize){
+                            Historial newver = new Historial(newText, editor.getDocumentos().get(i).getHistorialVersiones().size());
+                            editor.getDocumentos().get(i).getHistorialVersiones().add(newver);
+                            editor.getDocumentos().get(i).setTexto(newText);
+                            System.out.println("Se ha eliminado con exito el texto!");
+                            return;
+                        }else{
+                            newText = editor.getDocumentos().get(i).getTexto().substring(0, editor.getDocumentos().get(i).getTexto().length() - textSize);
+                            Historial newver = new Historial(newText, editor.getDocumentos().get(i).getHistorialVersiones().size());
+                            editor.getDocumentos().get(i).getHistorialVersiones().add(newver);
+                            editor.getDocumentos().get(i).setTexto(newText);
+                            System.out.println("Se ha eliminado con exito el texto!");
+                            return;
+                        }
+                    }
+                }
+                System.out.println("El usuario no es el autor del texto ni tampoco tiene permisos de escritura!");
+                System.out.println("No se puede agregar el texto.");
+                return;
+            }
+        }
+        System.out.println("El ID de documento " + iDDocumento + " no es valido.");
+        return;
+    }
+    //public void searchAndReplace(Integer )
 }
+
