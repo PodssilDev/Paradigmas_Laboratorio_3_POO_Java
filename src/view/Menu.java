@@ -14,10 +14,18 @@ public class Menu {
         this.controlador = controlador;
     }
 
+    
+    /** 
+     * @return Controlador
+     */
     public Controlador getControlador() {
         return controlador;
     }
 
+    
+    /** 
+     * @param controlador
+     */
     public void setControlador(Controlador controlador) {
         this.controlador = controlador;
     }
@@ -42,7 +50,8 @@ public class Menu {
                     System.out.println("Introduzca su eleccion: ");
                     eleccion = input.nextInt();
                     switch (eleccion) {
-                        case 1:
+
+                        case 1: // LOGIN
                             System.out.println("Su opcion fue la numero 1: Loguearse");
                             System.out.println("Ingrese el nombre de usuario:");
                             input.nextLine();
@@ -51,7 +60,8 @@ public class Menu {
                             password = input.nextLine();
                             controlador.login(username, password);
                             break;
-                        case 2:
+
+                        case 2: // REGISTER
                             System.out.println("Su opcion fue la numero 2: Registrarse");
                             System.out.println("Ingrese el nombre de usuario: ");
                             input.nextLine();
@@ -60,12 +70,13 @@ public class Menu {
                             password = input.nextLine();
                             controlador.register(username, password);
                             break;
-                        case 3:
+
+                        case 3: // VISUALIZE
                             System.out.println("Su opcion fue la numero 3: Ver documentos creados en el Editor");
                             controlador.visualize();
                             break;
 
-                        case 4:
+                        case 4: // CERRAR PROGRAMA
                             System.out.println("Gracias por utilizar " + controlador.getEditor().getName());
                             salirMenu = true;
                             input.close();
@@ -88,11 +99,12 @@ public class Menu {
                 System.out.println("3. Agregar contenido a un documento");
                 System.out.println("4. Restaurar version de un documento");
                 System.out.println("5. Revocar acceso a un documento");
-                System.out.println("6. Buscar en los documentos");
+                System.out.println("6. Buscar un texto en los documentos");
                 System.out.println("7. Visualizar documentos");
                 System.out.println("8. Eliminar caracteres de un documento");
-                System.out.println("9. Cerrar sesion");
-                System.out.println("10. Cerrar el editor");
+                System.out.println("9. Buscar y reemplazar un texto de un documento");
+                System.out.println("10. Cerrar sesion");
+                System.out.println("11. Cerrar el editor");
                 try {
                     System.out.println("Ingrese una de las opciones anteriores: ");
                     eleccion = input.nextInt();
@@ -192,17 +204,28 @@ public class Menu {
                             controlador.delete(documentID, textSize);
                             break;
 
-                        case 9: // LOGOUT
+                        case 9: // SEARCHANDREPLACE
+                            System.out.println("Ingrese el ID del documento que desea editar: ");
+                            documentID = input.nextInt();
+                            System.out.println("Ingrese el texto que desea buscar en el documento: ");
+                            input.nextLine();
+                            searchText = input.nextLine();
+                            System.out.println("Ingrese el texto por el cual desea reemplazar el texto anterior: ");
+                            String replaceText = input.nextLine();
+                            controlador.searchAndReplace(documentID, searchText, replaceText);
+                            break;
+
+                        case 10: // LOGOUT
                             controlador.logout();
                             break;
 
-                        case 10:
+                        case 11: // CERRAR PROGRAMA
                             System.out.println("Gracias por utilizar " + controlador.getEditor().getName());
                             salirMenu = true;
                             input.close();
                             break;
 
-                        default:
+                        default: // OTROS NUMEROS QUE NO ESTAN EN EL MENU
                             System.out.println("Seleccione nuevamente una de las opciones anteriores");
                             break;
                     }

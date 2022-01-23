@@ -9,22 +9,42 @@ public class Permiso {
         this.permiso = permiso;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getUsuario() {
         return usuario;
     }
 
+    
+    /** 
+     * @param usuario
+     */
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getPermiso() {
         return permiso;
     }
 
+    
+    /** 
+     * @param permiso
+     */
     public void setPermiso(String permiso) {
         this.permiso = permiso;
     }
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString() {
         return "Permiso{" +

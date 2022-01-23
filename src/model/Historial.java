@@ -16,30 +16,58 @@ public class Historial {
         this.id = id;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getFecha() {
         return fecha;
     }
 
+    
+    /** 
+     * @param fecha
+     */
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getTexto() {
         return texto;
     }
 
+    
+    /** 
+     * @param texto
+     */
     public void setTexto(String texto) {
         this.texto = texto;
     }
 
+    
+    /** 
+     * @return Integer
+     */
     public Integer getId() {
         return id;
     }
 
+    
+    /** 
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString() {
         return "Historial{" +

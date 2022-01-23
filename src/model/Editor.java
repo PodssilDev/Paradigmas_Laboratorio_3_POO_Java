@@ -28,54 +28,106 @@ public class Editor {
         registrados.add(user2);
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getName() {
         return name;
     }
 
+    
+    /** 
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getDate() {
         return date;
     }
 
+    
+    /** 
+     * @param date
+     */
     public void setDate(String date) {
         this.date = date;
     }
 
+    
+    /** 
+     * @return ArrayList<Usuario>
+     */
     public ArrayList<Usuario> getRegistrados() {
         return registrados;
     }
 
+    
+    /** 
+     * @param registrados
+     */
     public void setRegistrados(ArrayList<Usuario> registrados) {
         this.registrados = registrados;
     }
 
+    
+    /** 
+     * @return Usuario
+     */
     public Usuario getActivo() {
         return activo;
     }
 
+    
+    /** 
+     * @param activo
+     */
     public void setActivo(Usuario activo) {
         this.activo = activo;
     }
 
+    
+    /** 
+     * @return boolean
+     */
     public boolean isConectado() {
         return conectado;
     }
 
+    
+    /** 
+     * @param conectado
+     */
     public void setConectado(boolean conectado) {
         this.conectado = conectado;
     }
 
+    
+    /** 
+     * @return ArrayList<Documento>
+     */
     public ArrayList<Documento> getDocumentos() {
         return documentos;
     }
 
+    
+    /** 
+     * @param documentos
+     */
     public void setDocumentos(ArrayList<Documento> documentos) {
         this.documentos = documentos;
     }
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString() {
         String retorno = new String();
@@ -142,12 +194,20 @@ public class Editor {
         }
     }
 
+    
+    /** 
+     * @param usuario
+     */
     public void agregarUsuario(Usuario usuario){
         ArrayList<Usuario> listaUsers = getRegistrados();
         listaUsers.add(usuario);
         setRegistrados(listaUsers);
     }
 
+    
+    /** 
+     * @param documento
+     */
     public void agregarDocumento(Documento documento){
         ArrayList<Documento> listaDocumentos = getDocumentos();
         listaDocumentos.add(documento);
@@ -155,6 +215,10 @@ public class Editor {
 
     }
 
+    
+    /** 
+     * @param documento
+     */
     public void agregarDocumentoLimpio(Documento documento) {
         ArrayList<Documento> listaDocumentos = getDocumentos();
         for (int i = 0; i < listaDocumentos.size(); i++) {

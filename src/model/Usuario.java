@@ -20,47 +20,91 @@ public class Usuario{
         this.fecha = tipo.format(tempDate);
     }
 
+    
+    /** 
+     * @return Integer
+     */
     public static Integer getIdGlobal() {
         return idGlobal;
     }
 
+    
+    /** 
+     * @param idGlobal
+     */
     public static void setIdGlobal(Integer idGlobal) {
         Usuario.idGlobal = idGlobal;
     }
 
+    
+    /** 
+     * @return Integer
+     */
     public Integer getId() {
         return id;
     }
 
+    
+    /** 
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getUsername() {
         return username;
     }
 
+    
+    /** 
+     * @param username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getPassword() {
         return password;
     }
 
+    
+    /** 
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getFecha() {
         return fecha;
     }
 
+    
+    /** 
+     * @param fecha
+     */
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString() {
         return "Usuario{" +

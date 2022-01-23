@@ -6,8 +6,13 @@ import view.Menu;
 
 import java.util.ArrayList;
 
-public class Main {
 
+public class Main {
+    
+    
+    /** 
+     * @param args
+     */
     public static void main(String[] args) {
         /**
         Editor editor = new Editor("EntityDocs");
