@@ -1,35 +1,41 @@
 package view;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import controller.Controlador;
 
+/**
+ * Clase que simula un Menu interactivo. Contiene un Controlador
+ * @version 11.0.13.8
+ * @autor: John Serrano Carrasco
+ */
 public class Menu {
     private Controlador controlador;
-
 
     public Menu(Controlador controlador) {
         this.controlador = controlador;
     }
 
-    
-    /** 
-     * @return Controlador
+    /**
+     * Obtiene al Controlador
+     * @return Controlador Si se obtiene al Controlador
      */
     public Controlador getControlador() {
         return controlador;
     }
 
-    
-    /** 
-     * @param controlador
+    /**
+     * Modifica el controlador del Menu interactivo
+     * @param controlador (Controlador). Corresponde a un Controlador que maneja las funcionalidades del Menu
      */
     public void setControlador(Controlador controlador) {
         this.controlador = controlador;
     }
 
+    /**
+     * Permite ejecutar las distintas funcionalidades del menu
+     */
     public void ejecutarMenu() {
         Scanner input = new Scanner(System.in);
         boolean salirMenu = false;

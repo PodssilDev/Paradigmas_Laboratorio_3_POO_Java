@@ -1,53 +1,51 @@
 package controller;
 
 import model.*;
-
-import javax.sound.midi.Soundbank;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
- * 
+ * Clase que simula un Controlador. Contiene un Editor
+ * @version 11.0.13.8
+ * @autor: John Serrano Carrasco
  */
 public class Controlador {
     private Editor editor;
-    
+
     public Controlador(Editor editor) {
         this.editor = editor;
     }
 
-    
-    /** 
-     * @return Editor
+    /**
+     * Obtiene el Editor activo en el Controlador
+     * @return Editor Si se obtiene el Editor activo en el Controlador
      */
     public Editor getEditor() {
         return editor;
     }
 
-    
-    /** 
-     * @param editor
+    /**
+     * Modifica el Editor activo en el Controlador
+     * @param editor (Editor). Corresponde a un Editor que es modificado por el Controlador
      */
     public void setEditor(Editor editor) {
         this.editor = editor;
     }
 
-    
-    /** 
-     * @return boolean
+    /**
+     * Permite saber si hay un Usuario activo en el Editor
+     * @return boolean True o False dependiendo de si hay un usuario activo en el Editor
      */
     public boolean estaConectado() {
         Editor actual = getEditor();
         return actual.isConectado();
     }
 
-    
-    /** 
-     * @param username
-     * @param password
+    /**
+     * Registra a un Usuario en el Editor, solo si es que el Username no esta tomado con anterioridad
+     * @param username (String) Corresponde al nombre de usuario de un Usuario
+     * @param password (String) Corresponde al password de un Usuario
      */
     // AUTHENTICATION
-    
     public void register(String username, String password) {
         Editor editor = getEditor();
         int i = 0;
@@ -64,11 +62,10 @@ public class Controlador {
         return;
     }
 
-    
-    /** 
-     * Metodo que loguea a un usuario 
-     * @param username
-     * @param password
+    /**
+     * Loguea a un usuario si es que este ha sido registrado en el Editor con anterioridad
+     * @param username (String) Corresponde al nombre de usuario de un Usuario
+     * @param password (String) Corresponde al password de un Usuario
      */
     public void login(String username, String password) {
         Editor editor = getEditor();
@@ -85,17 +82,20 @@ public class Controlador {
         return;
     }
 
+    /**
+     * Desloguea a un Usuario que esta conectado al Editor
+     */
     public void logout() {
         Editor editor = getEditor();
         editor.setConectado(false);
-        return; 
+        return;
 
     }
 
-    
-    /** 
-     * @param nombreDoc
-     * @param contenido
+    /**
+     * Crea un nuevo Documento y lo agrega al Editor. El autor es el Usuario activo.
+     * @param nombreDoc (String) Corresponde al nombre que va a tener el Documento
+     * @param contenido (String). Corresponde a la primera version activa del Documento
      */
     public void create(String nombreDoc, String contenido) {
         Editor editor = getEditor();
@@ -105,11 +105,12 @@ public class Controlador {
         return;
     }
 
-    
-    /** 
-     * @param usernamesList
-     * @param iDDocumento
-     * @param permisoADar
+    /**
+     * Comparte un Documento con otros usuarios registrados en la plataforma. Existen tres tipos
+     * de permisos: Escritura, Lectura y Comentario
+     * @param usernamesList (ArrayList<String>. Corresponde a una lista de usernames de varios Usuarios
+     * @param iDDocumento (Integer). Corresponde al ID de un Documento
+     * @param permisoADar (String). Corresponde al permiso a dar en un documento a uno o varios Usuarios
      */
     public void share(ArrayList<String> usernamesList, Integer iDDocumento, String permisoADar) {
         Editor editor = getEditor();
@@ -166,9 +167,10 @@ public class Controlador {
     }
 
     
-    /** 
-     * @param iDDocumento
-     * @param textoAgregar
+    /**
+     * Agrega mas texto al final de la version activa de un Documento, creando una nueva version en el proceso
+     * @param iDDocumento (Integer) Corresponde al ID de un Documento
+     * @param textoAgregar (String) Corresponde al texto a agregar en la version activa de un Documento
      */
     public void add(Integer iDDocumento, String textoAgregar) {
         Editor editor = getEditor();
@@ -203,10 +205,10 @@ public class Controlador {
         return;
     }
 
-    
-    /** 
-     * @param iDDocumento
-     * @param iDVersion
+    /**
+     * Restauara una version del Historial de versiones de un Documento
+     * @param iDDocumento (Integer) Corresponde al ID de un Documento
+     * @param iDVersion (Integer) Corresponde al ID de una version del Historial de un Documento
      */
     public void rollback(Integer iDDocumento, Integer iDVersion) {
         Editor editor = getEditor();
@@ -231,9 +233,9 @@ public class Controlador {
         return;
     }
 
-    
-    /** 
-     * @param iDDocumento
+    /**
+     * Elimina los permisos concedidos en un documento
+     * @param iDDocumento (Integer) Corresponde al ID de un Documento
      */
     public void revokeAccess(Integer iDDocumento) {
         Editor editor = getEditor();
@@ -253,9 +255,10 @@ public class Controlador {
         return;
     }
 
-    
-    /** 
-     * @param searchText
+    /**
+     * Realiza busquedas en uno o varios documentos, dependiendo de si es el dueno de estos o de su
+     * grado de acceso
+     * @param searchText (String) Corresponde al texto a buscar en el/los Documento/s
      */
     public void search(String searchText) {
         Editor editor = getEditor();
@@ -300,16 +303,20 @@ public class Controlador {
         return;
     }
 
+    /**
+     * Transforma todo el contenido del Editor a String, dependiendo de si hay un Usuario conectado o no
+     */
     public void visualize() {
         Editor editor = getEditor();
         System.out.println(editor.toString());
         return;
     }
 
-    
-    /** 
-     * @param iDDocumento
-     * @param textSize
+    /**
+     * Elimina un numero de caracteres en especifico de la version activa de un Documento, creando una
+     * nueva version en el proceso.
+     * @param iDDocumento (Integer) Corresponde al ID de un Documento
+     * @param textSize (Integer) Corresponde al largo de caracteres a eliminar en la version activa
      */
     public void delete(Integer iDDocumento, Integer textSize) {
         Editor editor = getEditor();
@@ -359,11 +366,11 @@ public class Controlador {
         return;
     }
 
-    
-    /** 
-     * @param iDDocumento
-     * @param searchText
-     * @param replaceText
+    /**
+     * Busca y reemplaza caracteres en la version activa de un Documento en especifico
+     * @param iDDocumento (Integer) Corresponde al ID unico de un Documento
+     * @param searchText (String) Corresponde al texto a buscar en la version activa de un Documento
+     * @param replaceText (String) Corresponde al texto que reemplazara el texto buscado
      */
     public void searchAndReplace(Integer iDDocumento, String searchText, String replaceText) {
         Editor editor = getEditor();
@@ -401,5 +408,4 @@ public class Controlador {
         System.out.println("El ID de documento " + iDDocumento + " no es valido.");
         return;
     }
-
 }

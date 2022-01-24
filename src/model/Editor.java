@@ -4,6 +4,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Clase que simula un Editor, el cual almacena dos strings, una lista de usuarios, una lista de documentos,
+ * un usuario y un booleano.
+ * @version 11.0.13.8
+ * @autor: John Serrano Carrasco
+ */
 public class Editor {
     private String name;
     private String date;
@@ -21,112 +27,143 @@ public class Editor {
         this.conectado = false;
         this.documentos = new ArrayList<>();
 
-        Usuario user1 = new Usuario("MrDoo", "lol123");
-        Usuario user2 = new Usuario("dulca", "test");
+        // Usuarios cargados inicialmente
+        Usuario user1 = new Usuario("user1", "pass1");
+        Usuario user2 = new Usuario("user2", "pass2");
+        Usuario user3 = new Usuario("user3", "pass3");
+        Usuario user4 = new Usuario("user4", "pass4");
+        Usuario user5 = new Usuario("user5", "pass5");
 
         registrados.add(user1);
         registrados.add(user2);
+        registrados.add(user3);
+        registrados.add(user4);
+        registrados.add(user5);
+
+        // Documentos cargados incialmente
+        Documento doc1 = new Documento("user1", "doc1", "cont1");
+        Documento doc2 = new Documento("user1", "doc2", "cont2");
+        Documento doc3 = new Documento("user2", "doc3", "cont3");
+        Documento doc4 = new Documento("user2", "doc4", "cont4");
+        Documento doc5 = new Documento("user3", "doc5", "cont5");
+        Documento doc6 = new Documento("user3", "doc6", "cont6");
+        Documento doc7 = new Documento("user4", "doc7", "cont7");
+        Documento doc8 = new Documento("user4", "doc8", "cont8");
+        Documento doc9 = new Documento("user5", "doc9", "cont9");
+        Documento doc10 = new Documento("user5", "doc10", "cont10");
+
+        documentos.add(doc1);
+        documentos.add(doc2);
+        documentos.add(doc3);
+        documentos.add(doc4);
+        documentos.add(doc5);
+        documentos.add(doc6);
+        documentos.add(doc7);
+        documentos.add(doc8);
+        documentos.add(doc9);
+        documentos.add(doc10);
     }
 
-    
-    /** 
-     * @return String
+    /**
+     * Obtiene el nombre (String) del Editor
+     * @return String Si se obtiene el nombre del editor
      */
     public String getName() {
         return name;
     }
 
-    
-    /** 
-     * @param name
+    /**
+     * Modifica el nombre (String) del editor
+     * @param name (String) El nombre del editor
      */
     public void setName(String name) {
         this.name = name;
     }
 
-    
-    /** 
-     * @return String
+    /**
+     * Obtiene la fecha (Date) de un Editor
+     * @return String Si se obtiene la fecha (date) de un Editor
      */
     public String getDate() {
         return date;
     }
 
-    
-    /** 
-     * @param date
+    /**
+     * Modifica la fecha (Date) de un Editor
+     * @param date (date) La fecha de creacion un Editor
      */
     public void setDate(String date) {
         this.date = date;
     }
 
-    
-    /** 
-     * @return ArrayList<Usuario>
+    /**
+     * Obtiene la lista de usuarios (ArrayList<Usuario>) registrados en el Editor
+     * @return ArrayList<Usuario> Si se obtiene toda la lista de usuarios registrados
      */
     public ArrayList<Usuario> getRegistrados() {
         return registrados;
     }
 
-    
-    /** 
-     * @param registrados
+    /**
+     * Modifica la lista de usuarios (ArrayList<Usuario>) registrados en el Editor
+     * @param registrados Una lista de usuarios
      */
     public void setRegistrados(ArrayList<Usuario> registrados) {
         this.registrados = registrados;
     }
 
-    
-    /** 
-     * @return Usuario
+    /**
+     * Obtiene al usuario (Usuario) activo en el Editor
+     * @return Usuario Si se obtiene al usuario que tiene la sesion activa en el editor
      */
     public Usuario getActivo() {
         return activo;
     }
 
-    
-    /** 
-     * @param activo
+    /**
+     * Modifica al usuario (Usuario) activo en el Editor
+     * @param activo (Usuario). Corresponde a un usuario conectado en el Editor
      */
     public void setActivo(Usuario activo) {
         this.activo = activo;
     }
 
-    
-    /** 
-     * @return boolean
+    /**
+     * Booleano que verifica si hay un Usuario con sesion activa en el Editor
+     * @return boolean True o False dependiendo de si hay un Usuario activo en el Editor
      */
     public boolean isConectado() {
         return conectado;
     }
 
-    
-    /** 
-     * @param conectado
+    /**
+     * Modifica el booleano para saber si un Usuario esta conectado
+     * @param conectado (boolean) Indica si un usuario esta conectado o no
      */
     public void setConectado(boolean conectado) {
         this.conectado = conectado;
     }
 
-    
-    /** 
-     * @return ArrayList<Documento>
+    /**
+     * Obtiene la lista de documentos (ArrayList<Documento>) de un Editor
+     * @return ArrayList<Documento> Si se obtiene la lista de documentos del Editor
      */
     public ArrayList<Documento> getDocumentos() {
         return documentos;
     }
 
-    
-    /** 
-     * @param documentos
+    /**
+     * Modifica la lsita de documentos (ArrayList<Documento>) de un Editor
+     * @param documentos (ArrayList<Documento>). Corresponde a una lista de documentos
      */
     public void setDocumentos(ArrayList<Documento> documentos) {
         this.documentos = documentos;
     }
 
-    
-    /** 
-     * @return String
+    /**
+     * Transforma todo casi todo el contenido del editor en un string quue al imprimirlo muestra
+     * bastante informacion importante al usuario dependiendo si esta conectado o no
+     * @return String Si es que toda la informacion del editor se transforma a String
      */
     @Override
     public String toString() {
@@ -194,30 +231,31 @@ public class Editor {
         }
     }
 
-    
-    /** 
-     * @param usuario
+    /**
+     * Agrega un nuevo usuario (Usuario) a la lista de usuarios registrados del Editor
+     * @param usuario (Usuario). Usuario a registrar en el Editor
      */
     public void agregarUsuario(Usuario usuario){
         ArrayList<Usuario> listaUsers = getRegistrados();
         listaUsers.add(usuario);
         setRegistrados(listaUsers);
+        return;
     }
 
-    
-    /** 
-     * @param documento
+    /**
+     * Agrega un documento (Documento) nuevo al editor
+     * @param documento (Documento). Corresponde al documento a agregar al editor
      */
     public void agregarDocumento(Documento documento){
         ArrayList<Documento> listaDocumentos = getDocumentos();
         listaDocumentos.add(documento);
         setDocumentos(listaDocumentos);
-
+        return;
     }
 
-    
-    /** 
-     * @param documento
+    /**
+     * Elimina el documento y agrega el mismo documento pero actualizado
+     * @param documento (Documento). Corresponde al documento a actualizar en el Editor
      */
     public void agregarDocumentoLimpio(Documento documento) {
         ArrayList<Documento> listaDocumentos = getDocumentos();
@@ -228,5 +266,6 @@ public class Editor {
         }
         listaDocumentos.add(documento);
         setDocumentos(listaDocumentos);
+        return;
     }
 }

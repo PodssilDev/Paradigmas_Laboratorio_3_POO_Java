@@ -4,6 +4,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Clase que simula un Documento, el cual almacena cuatro strings, dos listas, una de permisos y de historial
+ * y un ID Global
+ * @version 11.0.13.8
+ * @autor: John Serrano Carrasco
+ */
 public class Documento {
     private String autor;
     private String fechaCreacion;
@@ -27,125 +33,123 @@ public class Documento {
         historialVersiones.add(newHistorial);
         idGlobal = idGlobal + 1;
         this.id = idGlobal;
-
-
     }
 
-    
-    /** 
-     * @return String
+    /**
+     * Obtiene el autor (string) de un documento
+     * @return String al obtener el autor del documento
      */
     public String getAutor() {
         return autor;
     }
 
-    
-    /** 
-     * @param autor
+    /**
+     * Modifica el autor (string) de un documento
+     * @param autor (string). El autor del documento
      */
     public void setAutor(String autor) {
         this.autor = autor;
     }
 
-    
-    /** 
-     * @return String
+    /**
+     * Obtiene la fecha (date) de creacion de un documento
+     * @return String si se obtiene la fecha del documento
      */
     public String getFechaCreacion() {
         return fechaCreacion;
     }
 
-    
-    /** 
-     * @param fechaCreacion
+    /**
+     * Modifica la fecha (date) de creacion de un documento
+     * @param fechaCreacion (date). La fecha de creacion de un documento
      */
     public void setFechaCreacion(String fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
-    
-    /** 
-     * @return String
+    /**
+     * Obtiene el nombre (string) de un documento
+     * @return String Si se obtiene el nombre del documento
      */
     public String getName() {
         return name;
     }
 
-    
-    /** 
-     * @param name
+    /**
+     * Modifica el nombre (string) de un documento
+     * @param name (string). El nombre de un documento
      */
     public void setName(String name) {
         this.name = name;
     }
 
-    
-    /** 
-     * @return String
+    /**
+     * Obtiene la version actual (string) de un documento
+     * @return String Si se obtiene la version actual de un documento
      */
     public String getTexto() {
         return texto;
     }
 
-    
-    /** 
-     * @param texto
+    /**
+     * Modifica la version actual (string) de un documento
+     * @param texto (string)
      */
     public void setTexto(String texto) {
         this.texto = texto;
     }
 
-    
-    /** 
-     * @return ArrayList<Permiso>
+    /**
+     * Obtiene la lista de permisos (ArrayList<Permiso>) de un documento
+     * @return ArrayList<Permiso> Si se obtiene la lista de permisos del documento
      */
     public ArrayList<Permiso> getPermisos() {
         return permisos;
     }
 
-    
-    /** 
-     * @param permisos
+    /**
+     * Modifica la lista de permisos (ArrayList<Permiso>) de un documento
+     * @param permisos (ArrayList<Permiso>) Una lista de permisos de un documento
      */
     public void setPermisos(ArrayList<Permiso> permisos) {
         this.permisos = permisos;
     }
 
-    
-    /** 
-     * @return ArrayList<Historial>
+    /**
+     * Obtiene la lista de historial (ArrayList<Historial>) de versiones de un docuumento
+     * @return ArrayList<Historial> Si se obtiene el historial de versiones de un documento
      */
     public ArrayList<Historial> getHistorialVersiones() {
         return historialVersiones;
     }
 
-    
-    /** 
-     * @param historialVersiones
+    /**
+     * Modifica la lista de historial (ArrayList<Historial>) de versiones de un docuumento
+     * @param historialVersiones ArrayList<Historial>. El historial de versiones de un documento
      */
     public void setHistorialVersiones(ArrayList<Historial> historialVersiones) {
         this.historialVersiones = historialVersiones;
     }
 
-    
-    /** 
-     * @return Integer
+    /**
+     * Obtiene el id (Integer) unico de un documento
+     * @return Integer Si se obtiene el ID unico de un documento
      */
     public Integer getId() {
         return id;
     }
 
-    
-    /** 
-     * @param id
+    /**
+     * Modifica el id (Integer) unico de un documento
+     * @param id (Integer) El ID unico de un documento
      */
     public void setId(Integer id) {
         this.id = id;
     }
 
-    
-    /** 
-     * @return String
+    /**
+     * Convierte el contenido de un documento a string
+     * @return String Si se convierte todo el contenido del documento a String
      */
     @Override
     public String toString() {
@@ -160,10 +164,10 @@ public class Documento {
                 '}';
     }
 
-    
-    /** 
-     * @param documento
-     * @param permiso
+    /**
+     * Agrega un permiso en especifico manteniendo los demas permisos de un Documento
+     * @param documento (Documento). Un documento cualquiera
+     * @param permiso (Permiso). Un permiso en especifico
      */
     public void agregarPermiso(Documento documento, Permiso permiso) {
         ArrayList<Permiso> listapermisos = getPermisos();

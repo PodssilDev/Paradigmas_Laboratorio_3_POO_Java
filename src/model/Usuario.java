@@ -3,6 +3,11 @@ package model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Clase que simula un Usuario, el cual tiene un Integer, una Date y dos Strings
+ * @version 11.0.13.8
+ * @autor: John Serrano Carrasco
+ */
 public class Usuario{
     private static Integer idGlobal = 0;
     private Integer id;
@@ -20,90 +25,73 @@ public class Usuario{
         this.fecha = tipo.format(tempDate);
     }
 
-    
-    /** 
-     * @return Integer
-     */
-    public static Integer getIdGlobal() {
-        return idGlobal;
-    }
-
-    
-    /** 
-     * @param idGlobal
-     */
-    public static void setIdGlobal(Integer idGlobal) {
-        Usuario.idGlobal = idGlobal;
-    }
-
-    
-    /** 
-     * @return Integer
+    /**
+     * Obtiene el ID (Integer) unico de un Usuario
+     * @return Integer Si se obtiene el ID unico de un Usuario
      */
     public Integer getId() {
         return id;
     }
 
-    
-    /** 
-     * @param id
+    /**
+     * Modifica el ID (Integer) unico de un Usuario
+     * @param id (Integer). Corresponde al ID unico de un Usuario
      */
     public void setId(Integer id) {
         this.id = id;
     }
 
-    
-    /** 
-     * @return String
+    /**
+     * Obtiene el Username (String) de un Usuario
+     * @return String Si se obtiene el Username de un Usuario
      */
     public String getUsername() {
         return username;
     }
 
-    
-    /** 
-     * @param username
+    /**
+     * Modifica el Username (String) de un Usuario
+     * @param username (String). Corresponde al nombre de usuario de un Usuario
      */
     public void setUsername(String username) {
         this.username = username;
     }
 
-    
-    /** 
-     * @return String
+    /**
+     * Obtiene el password (String) de un Usuario
+     * @return String Si se otbeien el password de un Usuario
      */
     public String getPassword() {
         return password;
     }
 
-    
-    /** 
-     * @param password
+    /**
+     * Modifica el password (String) de un Usuario
+     * @param password (String). Corresponde al password de un Usuario
      */
     public void setPassword(String password) {
         this.password = password;
     }
 
-    
-    /** 
-     * @return String
+    /**
+     * Obtiene la fecha de registro de un Usuario
+     * @return String Si se obtiene la fecha de registro de un Usuario
      */
     public String getFecha() {
         return fecha;
     }
 
-    
-    /** 
-     * @param fecha
+    /**
+     * Modifica la fecha de un registro de un Usuario
+     * @param fecha (String). Corresponde a la fecha de registro de un Usuario
      */
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
-
-    
-    /** 
-     * @return String
+    /**
+     * Transforma todo el contenido de un Usuario a String
+     * @return String Si se convierte todo el contenido de un Usuario a String
      */
     @Override
     public String toString() {
