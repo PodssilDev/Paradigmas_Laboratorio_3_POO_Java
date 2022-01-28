@@ -1,0 +1,14 @@
+Requerimientos Funcionales	                Evaluación
+Clases y estructuras que forman el programa         1
+Menu interactivo por terminal	                    1
+Authentication	                                    1
+Create	                                            1
+Share	                                            1
+Add	                                            1
+Rollback	                                    1
+RevokeAccess                                        1
+Search                                              1
+Visualize                                           1
+Delete	                                            1
+SearchAndReplace	                            1
+
