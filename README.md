@@ -22,7 +22,7 @@ Se debe acceder dentro de la carpeta src y dentro de ella hay un archivo llamado
 para así poder ejecutar el programa. Luego solo basta con seguir las instrucciones por pantalla. 
 Para facilitar el proceso de prueba, se puede clonar el repositorio: 
 ```sh
-git clone https://github.com/PodssilDev/lab3_20537567_Serrano.git
+git clone https://github.com/PodssilDev/Paradigmas_Laboratorio_3_POO_Java.git
 ```
 ##Evaluación después de revisión
 * Nota Informe: 6.6 / 7.0
