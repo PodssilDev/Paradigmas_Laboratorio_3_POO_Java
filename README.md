@@ -18,7 +18,7 @@ clases mas, como son el controlador y el Menú interactivo. **Se implementaron 1
 ## Prerrequisitos
 Se necesita tener instalado Java en su versión 11. Ya que se implementó un archivo .bat para ejecutar el programa, no se necesitas de otros prerrequisitos adicionales
 ## Como ejecutar
-Se debe acceder dentro de la carpeta src y dentro de ella hay un archivo llamado "script.bat". Se puede abrir el archivo desde el CMD o bien, hacer doble click al archivo
+Se debe acceder dentro de la carpeta [src](https://github.com/PodssilDev/Paradigmas_Laboratorio_3_POO_Java/tree/main/src) y dentro de ella hay un archivo llamado "script.bat". Se puede abrir el archivo desde el CMD o bien, hacer doble click al archivo
 para así poder ejecutar el programa. Luego solo basta con seguir las instrucciones por pantalla. 
 Para facilitar el proceso de prueba, se puede clonar el repositorio: 
 ```sh
