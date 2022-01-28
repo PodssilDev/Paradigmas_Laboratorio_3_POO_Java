@@ -1,8 +1,8 @@
 # Laboratorio 3 Paradigmas de Programación: Paradigma Orientado a Objetos
-**Autor:** John Serrano Carrasco
-**Seccion:** 13310-0-A-1
-**Fecha de inicio:** 9 de Enero de 2022
-**Fecha de Entrega:** 24 de Enero de 2022
+* **Autor:** John Serrano Carrasco
+* **Seccion:** 13310-0-A-1
+* **Fecha de inicio:** 9 de Enero de 2022
+* **Fecha de Entrega:** 24 de Enero de 2022
 
 ## Descripción
 Este es el respositorio de mi **laboratorio 3** del curso de Paradigmas de Programación impartido en la Universidad de Santiago. En este laboratorio se ve la programación Orientada a Objetos, a traves del lenguaje de programación Java donde se busca crear una simulación a algo similar a una plataforma estilo Google Docs.
