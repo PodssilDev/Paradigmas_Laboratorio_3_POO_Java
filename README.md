@@ -24,7 +24,7 @@ Para facilitar el proceso de prueba, se puede clonar el repositorio:
 ```sh
 git clone https://github.com/PodssilDev/Paradigmas_Laboratorio_3_POO_Java.git
 ```
-##Evaluación después de revisión
+## Evaluación después de revisión
 * Nota Informe: 6.6 / 7.0
 * Nota Requerimientos Funcionales: 6.5 / 7.0
 * Nota Requerimientos No Funcionales: 6.6 / 7.0
